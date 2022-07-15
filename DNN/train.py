@@ -15,13 +15,19 @@ import torch
 import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-sys.path.append('/mnt/HDD12TB/masterScripts/DNN')
+if os.uname().nodename == 'finn':
+    sys.path.append('/mnt/HDD12TB/masterScripts/DNN')
+elif os.uname().nodename == 'u110380':
+    sys.path.append('/home/dave/masterScripts/DNN')
 from alterImages import occludeImages, addNoise, blurImages
 from accuracy import accuracy
 import zoo
 from zoo.prednet import *
 
-sys.path.append('/mnt/HDD12TB/masterScripts/DNN/zoo/CORnet_master')
+if os.uname().nodename == 'finn':
+    sys.path.append('/mnt/HDD12TB/masterScripts/DNN/CORnet_master')
+elif os.uname().nodename == 'u110380':
+    sys.path.append('/home/dave/masterScripts/DNN/CORnet_master')
 import cornet
 
 def train(modelName='alexnet', model=None, datasetPath='/home/dave/Datasets/imagenet16', pretrained=True, learningRate=.01,
